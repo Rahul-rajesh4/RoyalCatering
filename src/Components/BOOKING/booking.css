@@ -1,0 +1,30 @@
+.carddesignn{
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 10% !important;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 100%;
+    background-color: rgb(232, 176, 108);
+}
+.titlecenter{
+    padding-bottom: 5%;
+    font-family: "Roboto Condensed", sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    text-align: center;
+}
+.formstyle{
+    font-family: "Roboto Condensed", sans-serif !important;
+}
+.formbutton{
+    margin-top: 3%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    font-family: "Roboto Condensed", sans-serif;
+
+}

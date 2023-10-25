@@ -1,0 +1,105 @@
+.bg{
+    background-color: rgba(0,0,0,0.4);
+}
+.bg2{
+    background-color: rgb(236, 195, 146);
+}
+
+
+.classname {
+    transform: translateX(0);
+    width: 450px;
+    height: 800px;
+    display: block !important;
+    position: fixed;
+    transition: .5s;
+    overflow-y: auto;
+    top: 0;
+    right: -400px;
+    background-color: black;
+    z-index: 9999;
+    padding: 50px 40px 0px 40px;
+    animation-name: cssAnimation;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+.loginform{
+  border-radius: 40px;
+}
+
+
+@keyframes cssAnimation {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    100% {
+        -webkit-transform: translateX(-400px);
+        transform: translateX(-400px);
+    }
+}
+.close-div{
+    position: absolute;
+    right: 10px;
+    top: 1px;
+}
+
+
+.modal-title{
+    margin-bottom: 40px;
+}
+
+
+.modal-content {
+    background-color: black !important;
+}
+
+.no {
+    display: none;
+}
+
+#anim {
+    display: none;
+}
+
+@media screen and (max-width: 450px) {
+    .classname {
+      width: 400px;
+    }
+  }
+
+  @media screen and (max-width: 398px) {
+    .classname {
+      width: 350px;
+
+    }
+    .btn-login{
+        margin: 70px 0 0 0;
+        left: 0px;
+        position: absolute;
+    }
+  }
+
+  @media screen and (max-width: 346px) {
+    .classname {
+      width: 300px;
+    }
+  }
+
+  @media screen and (max-width: 300px) {
+    .classname {
+      width: 250px;
+    }
+  }
+
+  .form-control{
+    margin: 10px 0 10px 0;
+    background: transparent;
+    border: white 2px solid;
+    padding: 10px;
+    color: white;
+  }

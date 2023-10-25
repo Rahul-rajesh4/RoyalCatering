@@ -1,0 +1,47 @@
+.main10card{
+    margin-top: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(242, 219, 190);
+    padding-bottom: 10%;
+    padding-top: 10%;
+}
+.main11card{
+    overflow: hidden;
+    border-radius: .9%;
+    width: 100%;
+    
+    background-color: rgb(232, 176, 108);
+}
+.bloghome{ 
+    margin-top: 20%;
+    font-size: 70px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-weight: normal;
+    text-transform: uppercase;
+    font-family: "Roboto Condensed", sans-serif;
+
+}
+.pera{
+    font-family: "Roboto Condensed", sans-serif;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+.carouselsize{   
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.blogbutton{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    font-family: "Roboto Condensed", sans-serif;
+
+}
+.bottemspace{
+    padding-bottom: 10%;
+}

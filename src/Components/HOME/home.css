@@ -1,0 +1,120 @@
+.video{
+    width: 100%;
+    height: 820px;
+    object-fit: cover;
+}
+.overlay{
+    height: 821px;
+    position: absolute;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    background-color: rgba(0,0,0,0.4);
+    box-shadow: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,0.29);
+
+}
+.content{
+    text-align: center;
+}
+.content h1{
+    padding-top: 290px;
+    font-size: 160px;
+    color: white;
+}
+@media only screen and (max-width: 1043px) {
+    .content h1{
+        
+
+        font-size: 100px; 
+    }
+  }
+@media only screen and (max-width: 680px) {
+    .content h1{
+        font-size: 70px; 
+    }
+    
+}
+@media only screen and (max-width: 473px) {
+    .content h1{
+        
+        transition:  all .2s ease-in-out;
+        font-size: 60px; 
+    }
+}
+@media only screen and (max-width: 400px) {
+    .content h1{
+        padding-top: 80%;
+        transition:  all .2s ease-in-out;
+        font-size: 50px; 
+    }
+}
+@media only screen and (max-width: 320px) {
+    .content h1{
+        transition:  all .2s ease-in-out;
+        font-size: 40px; 
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .video{
+        transition:  all .3s ease-in-out;
+        height:80vb; 
+    }
+    .overlay{
+        transition:  all .3s ease-in-out;
+        height: 80vb !important;
+    }
+}
+
+.spacecard{
+    padding-top: 10%;
+    padding-bottom: 10%;
+    background-color: rgb(255, 255, 255);
+}
+.textdesign{
+    padding-top: 5%;
+    font-size: 70px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    padding-bottom: 5%;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-family: "Roboto Condensed", sans-serif;
+}
+@media only screen and (max-width: 360px) {
+    .textdesign{
+        font-size: 50px;
+    }
+}
+
+.backimg{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-attachment: fixed; 
+}
+.container1{
+    width: 100%;
+    height: 600px;
+    background-position: center;
+    background-size: cover;
+    background-image: url('../HOME/IMG_VIDEOS/backimg.jpg');
+    background-attachment: fixed;
+
+    
+
+}
+.pera2{
+    font-family: "Roboto Condensed", sans-serif;
+    color: rgb(255, 255, 255);
+    text-align: center; 
+}
+.hedding11{
+    font-family: "Roboto Condensed", sans-serif;
+    padding-top: 20%;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    
+
+}
+
