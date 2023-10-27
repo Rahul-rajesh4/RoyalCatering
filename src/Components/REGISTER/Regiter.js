@@ -29,7 +29,7 @@ export default function Regiter() {
 
   }
 
-  const submit =()=>{
+  const reg =()=>{
     dispatch(register(input))
     Navigate('/')
   }
@@ -57,7 +57,7 @@ export default function Regiter() {
                 <label className='regNames text-white' >Password</label>
                 <input type="password" class="form-control regform" id="exampleInputPassword1" name='password' onChange={inputChange}></input>
               </div>
-              <button type='button' onClick={submit} class="btn btn-light regbutton">SUBMIT</button>
+              <button type='button' onClick={reg} class="btn btn-light regbutton">SUBMIT</button>
 
               </form>
               

@@ -1,0 +1,8 @@
+.adfirst{
+    height: 200px;
+    background-color: black;
+    background-position: center;
+    background-size: cover;
+    background-image: url('./adimg/adimgg.jpg');
+    background-attachment: fixed;
+}

@@ -1,23 +1,32 @@
 import React, { useState } from 'react'
 import './booking.css'
+import { useDispatch, useSelector,  } from 'react-redux'
+import { Bookingapi } from '../REDUX/SLICE/eventSlice'
 export default function Booking() {
 
-  const log_id=localStorage.getItem('RoyalCatering_logId')
+  const log_id = localStorage.getItem('RoyalCatering_logId')
   // console.log(log_id)
 
-  const [state,setState] = useState({})
 
-  const inputChange = (event)=>{
-        const {name,value} = event.target
-        setState({...state,[name]:value})
+  const {data} = useSelector((state)=>state.event)
+  const dispatch = useDispatch()
+  console.log(data);
+
+
+  const [slot, setSlot] = useState({})
+
+  const inputChange = (datas) => {
+    const { name,value} = datas.target
+    setSlot({ ...slot, [name]: value })
   }
 
-  const submit = (event)=>{
-    event.preventDefault()
-  if(log_id){
-    console.log(state);
-  }
-    else{
+  const send = (event) => {
+    event.preventDefault();
+    if (log_id) {
+      console.log(slot);
+      dispatch(Bookingapi(slot))
+    }
+    else {
       window.alert('please login')
 
     }
@@ -33,26 +42,37 @@ export default function Booking() {
                 <input type="text" class="form-control formstyle bg-transparent" name='name' placeholder="YOUR NAME" onChange={inputChange}></input>
               </div>
               <div class="col-sm mt-2">
-              <input type="email" class="form-control formstyle bg-transparent" name='email' placeholder="YOUR EMAIL" onChange={inputChange}></input>
+                <input type="email" class="form-control formstyle bg-transparent" name='email' placeholder="YOUR EMAIL" onChange={inputChange}></input>
               </div>
             </div>
             <div class="row">
               <div class="col-sm mt-2">
-              <input type="tel" class="form-control formstyle bg-transparent" name='contact' placeholder="PHONE NUMBER" onChange={inputChange}></input>
+                <input type="tel" class="form-control formstyle bg-transparent" name='contact' placeholder="PHONE NUMBER" onChange={inputChange}></input>
               </div>
               <div class="col-sm mt-2">
-              <input type="time" class="form-control formstyle bg-transparent" name='time' placeholder="TIME" onChange={inputChange}></input>
+                <input type="time" class="form-control formstyle bg-transparent" name='time' placeholder="TIME" onChange={inputChange}></input>
               </div>
             </div>
             <div class="row">
               <div class="col-sm mt-2">
-              <input type="date" class="form-control formstyle bg-transparent" placeholder="DATE" name='date' onChange={inputChange}></input>
+                <input type="date" class="form-control formstyle bg-transparent" placeholder="DATE" name='date' onChange={inputChange}></input>
               </div>
               <div class="col-sm mt-2">
-              <input type="number" class="form-control formstyle bg-transparent" name='NoOfPerson' placeholder="NO. OF PERSONS" onChange={inputChange}></input>
+                <input type="number" class="form-control formstyle bg-transparent" name='noofperson' placeholder="NO. OF PERSONS" onChange={inputChange}></input>
               </div>
             </div>
-            <button  class="btn btn-light formbutton" onClick={submit}>SUBMIT</button>
+            <div class="row">
+              <div class="col-sm mt-2">
+                <select class="form-select formstyle bg-transparent" aria-label="Default select example" name='typeofevent' onChange={inputChange}>
+                  <option selected>Open this select menu</option>
+                  <option >birthday</option>
+                  <option >wedding</option>
+                  <option >private</option>
+                </select>
+              </div>
+
+            </div>
+            <button class="btn btn-light formbutton" onClick={send}>SUBMIT</button>
           </form>
         </div>
       </div>

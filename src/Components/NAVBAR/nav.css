@@ -1,5 +1,12 @@
 .bg{
     background-color: rgba(0,0,0,0.4);
+    background-size: cover;
+  /* or use background-size: contain; depending on your preference */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.nav-textsize{
+  font-size: 20px;
 }
 .bg2{
     background-color: rgb(236, 195, 146);

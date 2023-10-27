@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import login,UserRegister
-from .serializers import loginSerializer,registerSerializer
+from .models import login,UserRegister,Bookingslot
+from .serializers import loginSerializer,registerSerializer,bookingSerializer
 
 class Registerapi(GenericAPIView):
     serializer_class=loginSerializer
@@ -47,14 +47,22 @@ class loginAPI(GenericAPIView):
         return Response({'data':'invalid credentials','success':False},status=status.HTTP_400_BAD_REQUEST)
     
 class Bookingapi(GenericAPIView):
+    serializer_class=bookingSerializer
     def post(self,request):
-        Name=request.data.get('name')
+        name=request.data.get('name')
         email=request.data.get('email')
         contact=request.data.get('contact')
         date=request.data.get('date')
         time=request.data.get('time')
-        TypeofEvent=request.data.get('TypeofEvent')
-        NoofPerson=request.data.get('namNoofPersone')
+        noofperson=request.data.get('noofperson')
+        typeofevent=request.data.get('typeofevent')
+        serializers_booking = self.serializer_class(data={'name':name,'email':email,'contact':contact,'email':email,'date':date,'time':time,'typeofevent':typeofevent,'noofperson':noofperson})
+        print(serializers_booking)
+        if(serializers_booking.is_valid()):
+            serializers_booking.save()
+            return Response({'data':serializers_booking.data,'message':'Added successfully','success':True},status=status.HTTP_201_CREATED)
+        return Response({'data':serializers_booking.errors,'message':'failed','success':False},status=status.HTTP_400_BAD_REQUEST)
+
 
 
         

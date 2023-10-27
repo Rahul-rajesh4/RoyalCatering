@@ -17,6 +17,16 @@ export const register = createAsyncThunk('register',async(userData)=>{
 })
 
 
+export const Bookingapi = createAsyncThunk('Booking',async(book)=>{
+    try{
+        const responce = await axios.post('http://127.0.0.1:8000/api/Bookingapi',book)
+        return responce.data.data
+    }catch (error){
+        console.log(error);
+    }
+})
+
+
 export const eventSlice = createSlice({
     name:'event',
     initialState,
@@ -30,6 +40,18 @@ export const eventSlice = createSlice({
             state.data = action.payload
         })
         builder.addCase(register.rejected,(state,action)=>{
+            state.loading = false
+            state.error = true
+        })
+        // Booking
+        builder.addCase(Bookingapi.pending,(state)=>{
+            state.loading = true
+        })
+        builder.addCase(Bookingapi.fulfilled,(state,action)=>{
+            state.loading = false
+            state.data = action.payload
+        })
+        builder.addCase(Bookingapi.rejected,(state,action)=>{
             state.loading = false
             state.error = true
         })

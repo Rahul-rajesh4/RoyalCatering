@@ -9,6 +9,10 @@ import Booking from './Components/BOOKING/Booking';
 import Blog from './Components/BLOG/Blog';
 import AboutUs from './Components/ABOUT US/About';
 import Regiter from './Components/REGISTER/Regiter';
+import Admin from './Components/ADMIN/Admin';
+import Admin_nav from './Components/ADMIN/Admin_nav';
+import Pages from './Components/ADMIN/Pages';
+import Viewbokking from './Components/ADMIN/Viewbokking';
 
 function App() {
   return (
@@ -23,6 +27,10 @@ function App() {
         <Route path='/blog' element={<Blog />}/>
         <Route path='/sighnup' element={<Regiter />}/>
         <Route path='/about' element={<AboutUs></AboutUs>}/>
+        <Route path='/admin' element={<Admin />}/>
+        <Route path='/admin-nav' element={<Admin_nav />}/>
+        <Route path='/adpage' element={<Pages />}/>
+        <Route path='/admin_view' element={<Viewbokking />}/>
 
           
         </Routes>
