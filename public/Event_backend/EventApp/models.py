@@ -22,3 +22,5 @@ class Bookingslot(models.Model):
     typeofevent=models.CharField(max_length=50)
 
 
+class AddEvent(models.Model):
+    events=models.CharField(max_length=50)

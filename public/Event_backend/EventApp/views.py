@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import login,UserRegister,Bookingslot
-from .serializers import loginSerializer,registerSerializer,bookingSerializer
+from .models import login,UserRegister,Bookingslot,AddEvent
+from .serializers import loginSerializer,registerSerializer,bookingSerializer,EventSerializer
 
 class Registerapi(GenericAPIView):
     serializer_class=loginSerializer
@@ -64,17 +64,68 @@ class Bookingapi(GenericAPIView):
         return Response({'data':serializers_booking.errors,'message':'failed','success':False},status=status.HTTP_400_BAD_REQUEST)
 
 
+class viewBooking(GenericAPIView):
+    serializer_class = bookingSerializer
+    def get(self,request):
+        queryset = Bookingslot.objects.all()
+        if(queryset.count()>0):
+            serializer = bookingSerializer(queryset,many=True)
+            return Response({'data':serializer.data,'message':'successfull','Success':True},status=status.HTTP_200_OK)
+        else:
+            return Response({'data':'non data avilable','Success':False},status=status.HTTP_400_BAD_REQUEST)
 
-        
 
 
 
 
+class getsinglecontactView(GenericAPIView):
+    serializer_class=bookingSerializer
+    def get(self,request,id):   
+        queryset=Bookingslot.objects.filter(pk=id).values()
+        if(queryset.count()>0):
+            serializer=bookingSerializer(queryset,many=True)
+            return Response({'data':serializer.data,'message':'get  show data','success':True},status=status.HTTP_200_OK)
+        return Response({'data':[],'message':'no data ','success':False},status=status.HTTP_400_BAD_REQUEST)
+    
+
+
+# class replyMessage(GenericAPIView):
+#     def post(self,request,id):
+#         Reply=request.data.get('Reply')
+#         to_email=request.data.get('email')
+#         sendmail(to_email,Reply)
+#         progress='1'
+#         contact = contactus.objects.get(id=id)
+#         contact.reply = Reply
+#         contact.status = progress
+#         contact.save()
+#         serializer = contactserializers(contact)
+#         return Response({'data': serializer.data,'message': 'success', 'success': True}, status=status.HTTP_201_CREATED)
+   
 
 
 
+class Addeventapi(GenericAPIView):
+    serializer_class = EventSerializer
+    def post(self,request):
+        events=request.data.get('events')
+        serializers_booking = self.serializer_class(data={'events': events})
+        print(serializers_booking)
+        if(serializers_booking.is_valid()):
+            serializers_booking.save()
+            return Response({'data':serializers_booking.data,'message':'Added successfully','success':True},status=status.HTTP_201_CREATED)
+        return Response({'data':serializers_booking.errors,'message':'failed','success':False},status=status.HTTP_400_BAD_REQUEST)
 
-        
+
+class viewEvent(GenericAPIView):
+    serializer_class = EventSerializer
+    def get(self,request):
+        queryset = AddEvent.objects.all()
+        if(queryset.count()>0):
+            serializer = EventSerializer(queryset,many=True)
+            return Response({'data':serializer.data,'message':'successfull','Success':True},status=status.HTTP_200_OK)
+        else:
+            return Response({'data':'non data avilable','Success':False},status=status.HTTP_400_BAD_REQUEST)     
 
 
 

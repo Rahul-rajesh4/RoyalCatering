@@ -1,13 +1,13 @@
 .view-Booking{
     width: 100%;
-    min-height: 500px;
-    background-color: antiquewhite;
     border-radius: 30px;
 }
 .Add-Event{
     padding: 30px;
     width: 100%;
     min-height: 500px;
-    background-color: antiquewhite;
     border-radius: 30px;
+}
+.low{
+    margin-top: 4%;
 }

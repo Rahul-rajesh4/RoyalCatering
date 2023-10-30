@@ -1,22 +1,29 @@
 import React, { useState } from 'react'
 import './booking.css'
-import { useDispatch, useSelector,  } from 'react-redux'
-import { Bookingapi } from '../REDUX/SLICE/eventSlice'
+import { useDispatch, useSelector, } from 'react-redux'
+import { Bookingapi, viewEvent } from '../REDUX/SLICE/eventSlice'
+import { useEffect } from 'react'
 export default function Booking() {
 
   const log_id = localStorage.getItem('RoyalCatering_logId')
   // console.log(log_id)
 
 
-  const {data} = useSelector((state)=>state.event)
+  const { data } = useSelector((state) => state.event)
   const dispatch = useDispatch()
   console.log(data);
+
+
+
+  useEffect(()=>{
+    dispatch(viewEvent())
+},[])
 
 
   const [slot, setSlot] = useState({})
 
   const inputChange = (datas) => {
-    const { name,value} = datas.target
+    const { name, value } = datas.target
     setSlot({ ...slot, [name]: value })
   }
 
@@ -65,9 +72,11 @@ export default function Booking() {
               <div class="col-sm mt-2">
                 <select class="form-select formstyle bg-transparent" aria-label="Default select example" name='typeofevent' onChange={inputChange}>
                   <option selected>Open this select menu</option>
-                  <option >birthday</option>
-                  <option >wedding</option>
-                  <option >private</option>
+                  {data?.map((value, key) => (
+                    <option key={value.event} value={value.event} className='text-dark'>
+                      {value.events}
+                    </option>
+                  ))}
                 </select>
               </div>
 

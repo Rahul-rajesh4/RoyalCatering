@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import login,UserRegister,Bookingslot
+from .models import login,UserRegister,Bookingslot,AddEvent
 
 class loginSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +15,8 @@ class bookingSerializer(serializers.ModelSerializer):
     class Meta:
         model=Bookingslot
         fields='__all__'
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AddEvent
+        fields = '__all__'
