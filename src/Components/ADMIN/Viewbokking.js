@@ -1,19 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import './Viewbooking.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { AddEvent, viewBooking } from '../REDUX/SLICE/eventSlice';
+import { AddEvent, viewBooking, singleslot , Replymessage } from '../REDUX/SLICE/eventSlice';
+
+
 
 export default function Viewbokking() {
 
-    const { data } = useSelector((state) => state.event)
+    const { data,reply } = useSelector((state) => state.event)
     const dispatch = useDispatch()
-    console.log(data);
+    console.log(data,reply);
 
-    const [get, SetGet] = useState([])
 
     useEffect(() => {
         dispatch(viewBooking())
     }, [])
+
+
+
+
+
+
+    const replyy = (id) => {
+        dispatch(singleslot(id))
+    }
+
+
+    const [input, setInput] = useState({})
+
+
+    const inputChangee = (event) => {
+        const { name, value } = event.target
+        setInput({ ...input, [name]: value })
+    }
+    console.log(input);
+
+    const send =()=>{
+        dispatch(Replymessage(input))
+        
+    }
 
 
     const [add, setAdd] = useState({})
@@ -26,6 +51,16 @@ export default function Viewbokking() {
     const SUBMIT = () => {
         dispatch(AddEvent(add))
     }
+
+useEffect(()=>{
+    const data ={
+        id:reply?.id,
+        name:reply?.name,
+        email:reply?.email
+    }
+    setInput(data)
+},[reply])
+
 
 
 
@@ -48,13 +83,64 @@ export default function Viewbokking() {
                                                 <p>DATE: {value.date}<br></br>
                                                     TIME: {value.time}<br></br>
                                                     NO.OF PERSONS: {value.noofperson}</p>
+
+                                                {value.status == "1" ?
+                                                    <label className='replyedd'>
+                                                    REPLYED
+                                                </label>
+
+                                                    :
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={() => { replyy(value.id) }}>
+                                                        REPLY
+                                                    </button>
+
+
+                                                }
+
                                             </div>
-                                            
+
                                         </div>
                                     </div>
 
 
                                 ))}
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    {/* <!-- Button trigger modal --> */}
+
+
+                    {/* <!-- Modal --> */}
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Name:</label>
+                                    <input type="text" class="form-control" id="recipient-name" name='name' value={reply?.name}></input>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                    <input type="text" class="form-control" id="recipient-name" name='email'  value={reply?.email}></input>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label" >Message:</label>
+                                    <textarea class="form-control" id="message-text" name='Reply' onChange={inputChangee}></textarea>
+                                </div>
+                            </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onClick={()=>{send(reply?.id)}}>send</button>
+                                </div>
                             </div>
                         </div>
                     </div>

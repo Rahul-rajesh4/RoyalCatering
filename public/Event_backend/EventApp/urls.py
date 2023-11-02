@@ -9,6 +9,8 @@ urlpatterns = [
     path('viewBooking',views.viewBooking.as_view(),name='viewBooking'),
     path('Addeventapi',views.Addeventapi.as_view(),name='Addeventapi'),
     path('viewEvent',views.viewEvent.as_view(),name='viewEvent'),
+    path('getsinglecontactView/<int:id>',views.getsinglecontactView.as_view(),name='getsinglecontactView'),
+    path("replyMessage",views.replyMessage.as_view(),name='replyMessage'),
 
     
 ]

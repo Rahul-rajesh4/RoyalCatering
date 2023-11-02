@@ -107,7 +107,7 @@ export default function Navbar() {
               <input type="password" class="form-control loginform" id="exampleInputPassword1" name='password' onChange={inputChange}></input>
             </div>
             <label className='text-white'>Don't have an account ?</label>
-            <a className='ml-3' href='/signup'>&nbsp;&nbsp;SIGN UP</a>
+            <a className='ml-3' href='/sighnup'>&nbsp;&nbsp;SIGN UP</a>
           </form>
         </div>
         <div class="modal-footer">

@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import login,UserRegister,Bookingslot,AddEvent
 from .serializers import loginSerializer,registerSerializer,bookingSerializer,EventSerializer
+from .mail import sendmail
 
 class Registerapi(GenericAPIView):
     serializer_class=loginSerializer
@@ -49,6 +50,7 @@ class loginAPI(GenericAPIView):
 class Bookingapi(GenericAPIView):
     serializer_class=bookingSerializer
     def post(self,request):
+        progress='0'
         name=request.data.get('name')
         email=request.data.get('email')
         contact=request.data.get('contact')
@@ -56,7 +58,8 @@ class Bookingapi(GenericAPIView):
         time=request.data.get('time')
         noofperson=request.data.get('noofperson')
         typeofevent=request.data.get('typeofevent')
-        serializers_booking = self.serializer_class(data={'name':name,'email':email,'contact':contact,'email':email,'date':date,'time':time,'typeofevent':typeofevent,'noofperson':noofperson})
+         
+        serializers_booking = self.serializer_class(data={'name':name,'email':email,'contact':contact,'email':email,'date':date,'time':time,'typeofevent':typeofevent,'noofperson':noofperson,'status':progress})
         print(serializers_booking)
         if(serializers_booking.is_valid()):
             serializers_booking.save()
@@ -89,18 +92,26 @@ class getsinglecontactView(GenericAPIView):
     
 
 
-# class replyMessage(GenericAPIView):
-#     def post(self,request,id):
-#         Reply=request.data.get('Reply')
-#         to_email=request.data.get('email')
-#         sendmail(to_email,Reply)
-#         progress='1'
-#         contact = contactus.objects.get(id=id)
-#         contact.reply = Reply
-#         contact.status = progress
-#         contact.save()
-#         serializer = contactserializers(contact)
-#         return Response({'data': serializer.data,'message': 'success', 'success': True}, status=status.HTTP_201_CREATED)
+class replyMessage(GenericAPIView):
+    def post(self,request):
+        id=request.data.get("id")
+        Reply=request.data.get('Reply')
+        to_email=request.data.get('email')
+        print(Reply,to_email)
+        sendmail(to_email,Reply)
+        # print("dfhfdshfkjhdsfmhdskjfdskjhgfvkdshgfhjdsfkhdskjfvadskj")
+        progress='1'
+        content = Bookingslot.objects.get(id=id)
+        content.reply = Reply
+        content.status = progress
+        content.save()
+        # serializer = bookingSerializer(content)
+        # if serializer.is_valid():
+        try:
+            return Response({'message':'Replay Added successfully','success':True },status=status.HTTP_201_CREATED)
+        except:
+            return Response({'message':'Replay failed','success':False},status=status.HTTP_400_BAD_REQUEST)
+
    
 
 

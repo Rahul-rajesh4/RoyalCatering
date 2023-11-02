@@ -20,6 +20,8 @@ class Bookingslot(models.Model):
     time=models.CharField(max_length=50)
     noofperson=models.CharField(max_length=50)
     typeofevent=models.CharField(max_length=50)
+    status=models.CharField(max_length=30)
+    reply=models.CharField(max_length=30,blank=True,default="no reply")
 
 
 class AddEvent(models.Model):
